@@ -4,9 +4,7 @@ Linux/Ubuntu shell scripts and notes to create and automate initialization of Ag
 
 ##### Inspiration, ideas and snippets drawn gratefully from the following sources (who otherwise bear no responsibility for errors in the contents of this repo):
 * Miles Erickson (miles.erickson@gmail.com), Galvanize Seattle  
- https://github.com/gSchool/dsi-spark-aws  
- https://github.com/gSchool/dsi-spark-install  
- https://github.com/gSchool/dsi-spark 
+ For further information: https://www.galvanize.com/seattle/data-science  
  
 * Russell Jurney, _Agile Data Science 2.0: Building Full-Stack Data Analytics Applications with Spark_, O'Reilly 2017.  
  https://github.com/rjurney/Agile_Data_Code_2/ 
