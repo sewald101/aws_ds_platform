@@ -2,7 +2,7 @@
 Linux/Ubuntu shell scripts and notes to create and automate initialization of Agile data science stacks on AWS.
 ##### Caveat: These are the products of learning-in-process; utilize at own risk to your systems and sanity.
 
-##### Inspiration, ideas and snippets drawn gratefully from the following sources (who otherwise bear no responsibility for errors in the contents of this repo):
+##### Inspiration, ideas, snippets and scripts drawn gratefully from the following sources (who otherwise bear no responsibility for errors in the contents of this repo):
 * Miles Erickson (miles.erickson@gmail.com), Galvanize Seattle  
  For further information: https://www.galvanize.com/seattle/data-science  
  
