@@ -11,5 +11,5 @@ Linux/Ubuntu shell scripts and notes to create and automate initialization of Ag
 * Russell Jurney, _Agile Data Science 2.0: Building Full-Stack Data Analytics Applications with Spark_, O'Reilly 2017.  
  https://github.com/rjurney/Agile_Data_Code_2/ 
  
-* Jose Marcial Portilla 
+* Jose Marcial Portilla  
  https://medium.com/@josemarcialportilla/getting-spark-python-and-jupyter-notebook-running-on-amazon-ec2-dec599e1c297
