@@ -14,11 +14,10 @@ echo "Logging to \"$LOG_FILE\" ..." | tee -a $LOG_FILE
 # From Jurney ...
 echo "Installing essential packages via apt-get in non-interactive mode ..." | tee -a $LOG_FILE
 # Debian options to facilitate silent installs explained here: https://raymii.org/s/tutorials/Silent-automatic-apt-get-upgrade.html
-sudo apt update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "DPkg::options::=--force-confdef" -o "DPkg::options::=--force-confold" upgrade
-sudo apt upgrade -qq # flag for maximum quiet level
-sudo apt-get update -qq
+sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "DPkg::options::=--force-confdef" -o "DPkg::options::=--force-confold" upgrade
+sudo apt-get upgrade -qq # flag for maximum quiet level
 sudo apt-get -f install -y # Necessary to correct dependencies according to error message?
-sudo apt install -y python-dev build-essential libssl-dev debconf-utils python-software-properties
+sudo apt-get install -y python-dev build-essential libssl-dev debconf-utils python-software-properties
 
 
 # Install Python 3
@@ -57,7 +56,7 @@ sleep 3
 
 
 echo "Installing Homebrew ..." | tee -a $LOG_FILE
-sudo apt install -y linuxbrew-wrapper
+sudo apt-get install -y linuxbrew-wrapper
 sleep 3
 
 
