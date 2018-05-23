@@ -21,10 +21,9 @@ Linux/Ubuntu shell scripts and notes to create and automate initialization of Ag
  #### `SSH$` = secure shell terminal tunneled to AWS virtual hardware (EC2, EMR, etc.) 
 
 #### 1. Spin up EC2 instance. (~5 minutes)  
-
     `$ bash /vm_launchers/ec2_SW.sh`
 
-   This command initializes an r4.xlarge EC2 instance with 60GB EBS-based solid state drive.  
+   This command initializes an r4.xlarge EC2 instance with 60GB EBS-SSD memory.  
    At present writing, AWS charges ~$0.24/hr for this instance.
 
 #### 2. Update EC2 alias in `$ .ssh/config` with EC2's public IP address copied from EC2 dashboard.  
@@ -32,11 +31,11 @@ Linux/Ubuntu shell scripts and notes to create and automate initialization of Ag
 #### 3. SSH into EC2.  
     `$ ssh <EC2 alias name>` 
 
-#### 4. `$ scp -r /bootstraps <EC2 alias name>:~/`  
- Secure copy (scp) bootstraps directory to EC2 HOME directory.  
+#### 4. Secure copy (scp) bootstraps directory to EC2 HOME directory.  
+    `$ scp -r /bootstraps <EC2 alias name>:~/`    
  
-#### 5. `SSH$ source /bootstraps/bootstrap_python.sh` **~7 minutes**  
- Execute bootstrap_python.sh on remote terminal.  
+#### 5. Execute bootstrap_python.sh on remote terminal. (~7 minutes)  
+    `SSH$ source /bootstraps/bootstrap_python.sh`  
  Installs:
    * Python 3.5, Anaconda build (Currently, Python 3.6 does not communicate with Spark.)
    * Packages: python-dev, build-essential, libssl-dev, debconf-utils, python-software-properties
