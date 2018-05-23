@@ -20,21 +20,25 @@ Linux/Ubuntu shell scripts and notes to create and automate initialization of Ag
  #### `$` = local terminal in cloned repo directory  
  #### `SSH$` = secure shell terminal tunneled to AWS virtual hardware (EC2, EMR, etc.) 
 
-#### 1. Spin up EC2 instance. (~5 minutes)  
+#### 1. In AWS console either:
+   a) create a new security key named `Agile_DS_SW` or  
+   b) create an alias in `$ .ssh/config` that points to your own security key (.pem) and update the `--security groups` variable in `$ /vm_launchers/ec2_SW.sh` with your security key name.  
+
+#### 2. Spin up EC2 instance. (~5 minutes)  
     `$ bash /vm_launchers/ec2_SW.sh`
 
    This command initializes an r4.xlarge EC2 instance with 60GB EBS-SSD memory.  
-   At present writing, AWS charges ~$0.24/hr for this instance.
+   At present writing, AWS charges ~$0.24/hr for this instance.  
 
-#### 2. Update EC2 alias in `$ .ssh/config` with EC2's public IP address copied from EC2 dashboard.  
+#### 3. Update EC2 alias in `$ .ssh/config` with EC2's public IP address copied from EC2 dashboard.  
 
-#### 3. SSH into EC2.  
+#### 4. SSH into EC2.  
     `$ ssh <EC2 alias name>` 
 
-#### 4. Secure copy (scp) bootstraps directory to EC2 HOME directory.  
+#### 5. Secure copy (scp) bootstraps directory to EC2 HOME directory.  
     `$ scp -r /bootstraps <EC2 alias name>:~/`    
  
-#### 5. Execute bootstrap_python.sh on remote terminal. (~7 minutes)  
+#### 6. Execute bootstrap_python.sh on remote terminal. (~7 minutes)  
     `SSH$ source /bootstraps/bootstrap_python.sh`  
  Installs:
    * Python 3.5, Anaconda build (Currently, Python 3.6 does not communicate with Spark.)
