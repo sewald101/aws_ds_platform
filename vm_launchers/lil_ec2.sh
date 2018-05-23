@@ -5,10 +5,9 @@ aws ec2 run-instances \
     --image-id ami-b5ed9ccd \
     --security-groups Agile_DS_SW \
     --key-name Agile_DS_SW \
-    --instance-type r4.xlarge \
-    --ebs-optimized \
+    --instance-type t2.micro \
     --block-device-mappings '[
-    {"DeviceName":"/dev/sda1","Ebs":{"DeleteOnTermination":true,"VolumeSize":60}}
+    {"DeviceName":"/dev/sda1","Ebs":{"DeleteOnTermination":true,"VolumeSize":32}}
     ]' \
     --count 1
 sleep 10
