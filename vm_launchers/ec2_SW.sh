@@ -8,7 +8,7 @@ aws ec2 run-instances \
     --instance-type r4.xlarge \
     --ebs-optimized \
     --block-device-mappings '[
-    {"DeviceName":"/dev/sda1","Ebs":{"DeleteOnTermination":true,"VolumeSize":60}}
+    {"DeviceName":"/dev/sda1","Ebs":{"DeleteOnTermination":true,"VolumeSize":120}}
     ]' \
     --count 1
 sleep 10

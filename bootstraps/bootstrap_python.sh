@@ -5,7 +5,7 @@
 # Java
 # Jupyter Notebook
 
-set -e # Do I need this?
+set -e
 
 # Update and install critical packages
 LOG_FILE="/tmp/bootstrap_python.sh.log"
@@ -15,11 +15,6 @@ echo "Installing essential packages via apt-get in non-interactive mode ..." | t
 echo "apt-get -f -y install" | tee -a $LOG_FILE
 # sudo apt-get -f -y install # Using -f flag to avert dependency errors (per error message during apt-get upgrade)
 sudo apt-get update && sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \ DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" upgrade
-# Debian options to facilitate silent installs explained here: https://raymii.org/s/tutorials/Silent-automatic-apt-get-upgrade.html
-# echo "apt-get update" | tee -a $LOG_FILE
-# sudo apt-get update -y
-# echo "apt-get upgrade" | tee -a $LOG_FILE
-# sudo apt-get upgrade -y
 echo "Installing individual packages ..." | tee -a $LOG_FILE
 sudo apt-get install -y python-dev build-essential libssl-dev debconf-utils python-software-properties
 
@@ -76,15 +71,6 @@ echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" | sudo tee -a /home/ubuntu/.b
 
 
 echo "Configuring Jupyter Notebook ..." | tee -a $LOG_FILE
-# Changing permissions for a /.local/share/jupyter/ directory
-# This was to correct an error running jupyter and trying to create a new notebook that said the directory did not exist
-# Are these lines necessary???
-# sudo chown ubuntu:ubuntu .local
-# cd .local
-# sudo chown ubuntu:ubuntu share
-# cd share
-# mkdir jupyter
-
 jupyter notebook --generate-config
 cd ~/.jupyter/
 
