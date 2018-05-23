@@ -11,12 +11,17 @@ set -e # Do I need this?
 LOG_FILE="/tmp/bootstrap_python.sh.log"
 echo "Logging to \"$LOG_FILE\" ..." | tee -a $LOG_FILE
 
-# From Jurney ...
 echo "Installing essential packages via apt-get in non-interactive mode ..." | tee -a $LOG_FILE
+echo "apt-get -f -y install" | tee -a $LOG_FILE
+sudo apt-get -f -y install # Using -f flag to avert dependency errors (per error message during apt-get upgrade)
+# vestigial command from Jurney, setting Debian variables?
+# && sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o \ DPkg::options::="--force-confdef" -o DPkg::options::="--force-confold" upgrade
 # Debian options to facilitate silent installs explained here: https://raymii.org/s/tutorials/Silent-automatic-apt-get-upgrade.html
-sudo apt-get update -qq && sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o "DPkg::options::=--force-confdef" -o "DPkg::options::=--force-confold" upgrade
-sudo apt-get upgrade -qq # flag for maximum quiet level
-sudo apt-get -f install -y # Necessary to correct dependencies according to error message?
+echo "apt-get update" | tee -a $LOG_FILE
+sudo apt-get update -y
+echo "apt-get upgrade" | tee -a $LOG_FILE
+sudo apt-get upgrade -y
+echo "Installing individual packages ..." | tee -a $LOG_FILE
 sudo apt-get install -y python-dev build-essential libssl-dev debconf-utils python-software-properties
 
 
@@ -56,13 +61,14 @@ sleep 3
 
 
 echo "Installing Homebrew ..." | tee -a $LOG_FILE
-sudo apt-get install -y linuxbrew-wrapper
+sudo apt install -y linuxbrew-wrapper
 sleep 3
 
 
 echo "Installing and configuring Java 8 from Oracle ..." | tee -a $LOG_FILE
 sleep 3
 sudo add-apt-repository -y ppa:webupd8team/java
+sudo apt-get update
 echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
 sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
 
@@ -101,12 +107,11 @@ echo ""
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 echo "In local terminal, enter:"
-echo -e "${RED}ssh -NfL 18888:localhost:18888 <remote ec2 alias name>${NC}"
+echo -e "${RED}$ ssh -NfL 18888:localhost:18888 <remote ec2 alias name>${NC}"
 echo ""
 echo "If closing down jupyter notebook, you may wish also to kill the ssh tunnel:"
-echo -e "${RED}ps aux | grep 18888${NC}"
-echo "Take note of the ssh process number ..."
-echo ""
-echo -e "${RED}kill <ssh process number>${NC}"
+echo -e "${RED}$ ps aux | grep 18888${NC}"
+echo "Take note of the ssh process number, then:"
+echo -e "${RED}$ kill <ssh process number>${NC}"
 echo ""
 echo "Script bootstrap_python.sh complete." | tee -a $LOG_FILE
