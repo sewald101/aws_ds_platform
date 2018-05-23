@@ -20,12 +20,17 @@ Linux/Ubuntu shell scripts and notes to create and automate initialization of Ag
  #### `$` = local terminal in cloned repo directory  
  #### `SSH$` = secure shell terminal tunneled to AWS virtual hardware (EC2, EMR, etc.) 
 
-#### 1. `$ bash /vm_launchers/ec2_SW.sh` **~5 Minutes**  
- Spins up r4.xlarge EC2 instance with 60GB EBS-based solid state drive (at present writing AWS charges $0.24/hr)  
- 
+#### 1. Spin up EC2 instance. (~5 minutes)  
+
+    `$ bash /vm_launchers/ec2_SW.sh`
+
+   This command initializes an r4.xlarge EC2 instance with 60GB EBS-based solid state drive.  
+   At present writing, AWS charges ~$0.24/hr for this instance.
+
 #### 2. Update EC2 alias in `$ .ssh/config` with EC2's public IP address copied from EC2 dashboard.  
 
-#### 3. `$ ssh <EC2 alias name>`  SSH into EC2.  
+#### 3. SSH into EC2.  
+    `$ ssh <EC2 alias name>` 
 
 #### 4. `$ scp -r /bootstraps <EC2 alias name>:~/`  
  Secure copy (scp) bootstraps directory to EC2 HOME directory.  
