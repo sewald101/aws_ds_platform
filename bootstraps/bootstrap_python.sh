@@ -23,12 +23,10 @@ sudo apt-get install -y python-dev build-essential libssl-dev debconf-utils pyth
 echo "============================" | tee -a $LOG_FILE
 echo "Installing Python 3..." | tee -a $LOG_FILE
 echo "============================" | tee -a $LOG_FILE
-sleep 3
 
 echo "Downloading Anaconda installer 4.2.0 (last build with Python 3.5 default) ..." | tee -a $LOG_FILE
-# Downloading the most recent installer that used Python 3.5 as a default because Spark
-# doesn't play nice with Python 3.6 (as of May 22, 2018)
-wget -S -T 10 -t 5 https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh -O $HOME/anaconda.sh
+# Downloading the most recent Python installer
+wget -S -T 10 -t 5 https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh -O $HOME/anaconda.sh
 # Install in silent mode ...
 echo "Installing Anaconda ..." | tee -a $LOG_FILE
 bash $HOME/anaconda.sh -b -p $HOME/anaconda
@@ -51,7 +49,6 @@ echo "============================" | tee -a $LOG_FILE
 echo "Python installed!" | tee -a $LOG_FILE
 echo "============================" | tee -a $LOG_FILE
 echo "" | tee -a $LOG_FILE
-sleep 3
 
 
 echo "Installing Homebrew ..." | tee -a $LOG_FILE
@@ -84,6 +81,8 @@ sed -i "1i\c.NotebookApp.ip = '*'\n" jupyter_notebook_config.py
 sed -i "1i# Run on all IP addresses of your instance" jupyter_notebook_config.py
 sed -i "1i\c = get_config()\n" jupyter_notebook_config.py
 echo "Jupyter Notebook is configured." | tee -a $LOG_FILE
+
+source .bashrc
 
 echo ""
 echo "Test Jupyter Notebook by creating an ssh tunnel between local and ec2 ports 18888."
