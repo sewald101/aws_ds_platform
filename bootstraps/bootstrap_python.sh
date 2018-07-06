@@ -51,12 +51,21 @@ echo "============================" | tee -a $LOG_FILE
 echo "" | tee -a $LOG_FILE
 
 
+echo "" | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
 echo "Installing Homebrew ..." | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
+echo "" | tee -a $LOG_FILE
+
 sudo apt install -y linuxbrew-wrapper
 sleep 3
 
-
+echo "" | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
 echo "Installing and configuring Java 8 from Oracle ..." | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
+echo "" | tee -a $LOG_FILE
+
 sleep 3
 sudo add-apt-repository -y ppa:webupd8team/java
 sudo apt-get update
@@ -66,13 +75,15 @@ sudo apt-get install -y oracle-java8-installer oracle-java8-set-default
 export JAVA_HOME=/usr/lib/jvm/java-8-oracle
 echo "export JAVA_HOME=/usr/lib/jvm/java-8-oracle" | sudo tee -a /home/ubuntu/.bash_profile
 
-
+echo "" | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
 echo "Configuring Jupyter Notebook ..." | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
+echo "" | tee -a $LOG_FILE
 jupyter notebook --generate-config
 cd ~/.jupyter/
 
 echo "Editing jupyter_notebook_config.py" | tee -a $LOG_FILE
-sleep 3
 sed -i "1i\c.NotebookApp.port = 18888\n" jupyter_notebook_config.py
 sed -i "1i# Fix port to 18888\n" jupyter_notebook_config.py
 sed -i "1i\c.NotebookApp.open_browser = False\n" jupyter_notebook_config.py
@@ -80,12 +91,17 @@ sed -i "1i# Don't open browser by default" jupyter_notebook_config.py
 sed -i "1i\c.NotebookApp.ip = '*'\n" jupyter_notebook_config.py
 sed -i "1i# Run on all IP addresses of your instance" jupyter_notebook_config.py
 sed -i "1i\c = get_config()\n" jupyter_notebook_config.py
+
+echo "" | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
 echo "Jupyter Notebook is configured." | tee -a $LOG_FILE
+echo "============================" | tee -a $LOG_FILE
+echo "" | tee -a $LOG_FILE
 
 source .bashrc
 
 echo ""
-echo "Test Jupyter Notebook by creating an ssh tunnel between local and ec2 ports 18888."
+echo "Test Jupyter Notebook by creating an ssh tunnel between localhost and ec2/vm ports 18888."
 echo ""
 RED='\033[0;31m'
 NC='\033[0m' # No Color
